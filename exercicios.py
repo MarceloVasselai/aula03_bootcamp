@@ -22,18 +22,33 @@ if temperatura <= 15:
 elif temperatura > 15 and temperatura <= 25:
     print("Temperatura Normal")
 elif temperatura > 25:
-    print("Temperatura Alta")
+    print("Temperatura Alta ")
 else:
     print("Temperatura incorreta!") 
-
-
-
 
 ### Exercício 3: Filtragem de Logs por Severidade
 # Você está analisando logs de uma aplicação e precisa filtrar mensagens 
 # com severidade 'ERROR'. Dado um registro de log em formato de dicionário 
 # como `log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Falha na conexão'}`, 
 # escreva um programa que imprima a mensagem se a severidade for 'ERROR'.
+
+logs = [
+    {"timestamp": "2021-06-23 10:01:00", "level": "ERROR", "message": "Falha na conexão"},
+    {"timestamp": "2021-06-24 11:00:00", "level": "WARN", "message": "Tipo variável"},
+    {"timestamp": "2021-06-25 12:00:00", "level": "WARN", "message": "Tipo variável"},
+    {"timestamp": "2021-06-26 13:10:00", "level": "ERROR", "message": "Falha na conexão"},
+    {"timestamp": "2021-06-27 14:31:00", "level": "ERROR", "message": "Falha na conexão"},
+    {"timestamp": "2021-06-28 15:32:00", "level": "FATAL", "message": "timeout"},
+    {"timestamp": "2021-06-29 16:00:00", "level": "ERROR", "message": "Falha na conexão"},
+    {"timestamp": "2021-06-30 17:30:00", "level": "WARN", "message": "Tipo variável"}
+]
+
+erros = [log for log in logs if log["level"] == "ERROR"]
+
+# Exibir a lista de erros
+for erro in erros:
+    print(erro)
+
 
 ### Exercício 4: Validação de Dados de Entrada
 # Antes de processar os dados de usuários em um sistema de recomendação, 
