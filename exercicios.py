@@ -45,22 +45,51 @@ logs = [
 
 erros = [log for log in logs if log["level"] == "ERROR"]
 
-# Exibir a lista de erros
+# Exibir a lista com os erros
 for erro in erros:
     print(erro)
-
 
 ### Exercício 4: Validação de Dados de Entrada
 # Antes de processar os dados de usuários em um sistema de recomendação, 
 # você precisa garantir que cada usuário tenha idade entre 18 e 65 anos e tenha 
 # fornecido um email válido. Escreva um programa que valide essas condições 
 # e imprima "Dados de usuário válidos" ou o erro específico encontrado.
+logs = [
+    {"nome": "Vassa", "idade": "54", "profissao": "motorista"},
+    {"nome": "Jones", "idade": "19", "profissao": "motoboy"},
+    {"nome": "Fabio", "idade": "29", "profissao": "caixa"},
+    {"nome": "Julio", "idade": "40", "profissao": "gerente"},
+    {"nome": "Alfredo", "idade": "88", "profissao": "aposentado"},
+    {"nome": "Gomes", "idade": "39", "profissao": "mecanico"},
+    {"nome": "Enzo", "idade": "9", "profissao": "estudante"},
+    {"nome": "Valentina", "idade": "7", "profissao": "estudante"}
+]
+
+erros = [log for log in logs if int(log["idade"]) >= 18 and int(log["idade"]) <= 65]
+
+# Exibir a lista com os erros
+for erro in erros:
+    print(erro)
 
 ### Exercício 5: Detecção de Anomalias em Dados de Transações
 # Você está trabalhando em um sistema de detecção de fraude e precisa identificar 
 # transações suspeitas. Uma transação é considerada suspeita se o valor for superior 
 # a R$ 10.000 ou se ocorrer fora do horário comercial (antes das 9h ou depois das 18h). 
 # Dada uma transação como `transacao = {'valor': 12000, 'hora': 20}`, verifique se ela é suspeita.
+logs = [
+    {'valor': 12000, 'hora': 7},
+    {'valor': 9999, 'hora': 19},
+    {'valor': 1000, 'hora': 0},
+    {'valor': 122000, 'hora': 10}
+]
+
+erros = [log for log in logs if int(log["valor"]) >= 10000 or (int(log["hora"]) < 9 or int(log["hora"]) > 18 )]
+
+# Exibir a lista com os erros
+for erro in erros:
+    print(erro)
+
+
 
 ### Exercício 6. Contagem de Palavras em Textos
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
