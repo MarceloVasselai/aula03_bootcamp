@@ -3,7 +3,6 @@
 # que todos os registros tenham valores positivos para `quantidade` e `preço`. 
 # Escreva um programa que verifique esses campos e imprima "Dados válidos" se ambos 
 # forem positivos ou "Dados inválidos" caso contrário.
-
 qtde = int(input("Informe a qtde: "))
 valor = int(input("Informe o valor: "))
 
@@ -12,11 +11,23 @@ if qtde > 0 and valor > 0:
 else:
     print("Dados inválidos") 
 
-
 ### Exercício 2: Classificação de Dados de Sensor
 # Imagine que você está trabalhando com dados de sensores IoT. 
 # Os dados incluem medições de temperatura. Você precisa classificar cada leitura 
 # como 'Baixa', 'Normal' ou 'Alta'. Considerando que:
+temperatura = int(input("Informe o valor: "))
+
+if temperatura <= 15:
+    print("Temperatura Baixa")
+elif temperatura > 15 and temperatura <= 25:
+    print("Temperatura Normal")
+elif temperatura > 25:
+    print("Temperatura Alta")
+else:
+    print("Temperatura incorreta!") 
+
+
+
 
 ### Exercício 3: Filtragem de Logs por Severidade
 # Você está analisando logs de uma aplicação e precisa filtrar mensagens 
