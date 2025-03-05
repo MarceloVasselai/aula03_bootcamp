@@ -178,10 +178,41 @@ numbers = [10, 58, 22, 30, 15, 25, 5, 28, 20, 12]
 # Classificar cada temperatura na lista
 for number in numbers:
     if number  % 2 == 0 :
-        print(f"Número {number}: é par !")
+        print(f"Número {number} é par !")
 
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
+def total_vendas_por_categoria(vendas): 
+
+    total_por_categoria = {}
+
+    for venda in vendas:
+        categoria = venda['categoria']
+        valor = venda['valor']
+
+        # Adiciona o valor à categoria correspondente
+        if categoria in total_por_categoria:
+            total_por_categoria[categoria] += valor
+        else:
+            total_por_categoria[categoria] = valor
+
+    return total_por_categoria
+
+# Exemplo de uso
+vendas = [
+    {"categoria": "Eletrônicos", "valor": 1000.30},
+    {"categoria": "Roupas", "valor": 1500.00},
+    {"categoria": "Eletrônicos", "valor": 300.20},
+    {"categoria": "Alimentos", "valor": 50.10},
+    {"categoria": "Roupas", "valor": 1001.00},
+    {"categoria": "Alimentos", "valor": 75.00},
+]
+
+resultado = total_vendas_por_categoria(vendas)
+
+# Exibir o total de vendas por categoria
+for categoria, total in resultado.items():
+    print(f"Categoria: {categoria}, Total de Vendas: R$ {total:.2f}")
 
 ### Exercícios com WHILE
 
