@@ -89,16 +89,78 @@ erros = [log for log in logs if int(log["valor"]) >= 10000 or (int(log["hora"]) 
 for erro in erros:
     print(erro)
 
-
-
 ### Exercício 6. Contagem de Palavras em Textos
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
+from collections import Counter
+import string
+
+def contar_palavras(texto):
+    # Normalizar o texto: converter para minúsculas e remover pontuações
+    texto = texto.lower()
+    texto = texto.translate(str.maketrans('', '', string.punctuation))
+
+    # Dividir o texto em palavras
+    palavras = texto.split()
+
+    # Contar as ocorrências de cada palavra
+    contagem = Counter(palavras)
+
+    return contagem
+
+# Exemplo de uso
+texto = """
+Olá, mundo! Este um exercício de Python. A linguagem python é mais utilizada do Mundo, e como utilizamos Python neste mundo.
+"""
+
+contagem = contar_palavras(texto)
+
+# Exibir a contagem de cada palavra
+for palavra, quantidade in contagem.items():
+    print(f"'{palavra}': {quantidade} veze(s)")
 
 ### Exercício 7. Normalização de Dados
 # Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
+def normalizar_lista(lista):
+    # Encontrar o valor mínimo e máximo da lista
+    minimo = min(lista)
+    maximo = max(lista)
+
+    # Normalizar cada valor da lista
+    lista_normalizada = [(valor - minimo) / (maximo - minimo) for valor in lista]
+
+    return lista_normalizada
+
+# Exemplo de uso
+lista = [10, 20, 30, 40, 50, 60] #Lista normalizada: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+lista_normalizada = normalizar_lista(lista)
+
+print("Lista original:", lista)
+print("Lista normalizada:", lista_normalizada)
 
 ### Exercício 8. Filtragem de Dados Faltantes
 # Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
+def filtrar_dados_faltantes(lista_usuarios, campo):
+    """
+    Filtra os dicionários que não contêm o campo especificado.
+    """
+    return [usuario for usuario in lista_usuarios if campo not in usuario]
+
+# Exemplo de uso
+lista_usuarios = [
+    {"nome": "Mario", "idade": 25, "email": "mario@example.com"},
+    {"nome": "Jose", "idade": 30},  # Campo 'email' faltando
+    {"nome": "Alfredo", "email": "alfredo@example.com"},  # Campo 'idade' faltando
+    {"nome": "Marcos", "idade": 35, "email": "marcos@example.com"},
+    {"nome": "Maria"}  # Campos 'idade' e 'email' faltando
+]
+
+# Filtrar usuários que não têm o campo 'email'
+usuarios_faltando_email = filtrar_dados_faltantes(lista_usuarios, "email")
+print("Usuários sem email:", usuarios_faltando_email)
+
+# Filtrar usuários que não têm o campo 'idade'
+usuarios_faltando_idade = filtrar_dados_faltantes(lista_usuarios, "idade")
+print("Usuários sem idade:", usuarios_faltando_idade)
 
 ### Exercício 9. Extração de Subconjuntos de Dados
 # Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
