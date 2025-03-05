@@ -3,28 +3,39 @@
 # que todos os registros tenham valores positivos para `quantidade` e `preço`. 
 # Escreva um programa que verifique esses campos e imprima "Dados válidos" se ambos 
 # forem positivos ou "Dados inválidos" caso contrário.
-qtde = int(input("Informe a qtde: "))
-valor = int(input("Informe o valor: "))
+vendas = [
+    {"quantidade": 10, "preco": 20.5},
+    {"quantidade": 5, "preco": 15.0},
+    {"quantidade": -1, "preco": 15.0},
+    {"quantidade": 5, "preco": -115.0},
+    {"quantidade": 5, "preco": 15.0},
+    {"quantidade": 3, "preco": 10.0}
+]
 
-if qtde > 0 and valor > 0:
-    print("Dados válidos")
-else:
-    print("Dados inválidos") 
+erros = [venda for venda in vendas if int(venda["quantidade"]) < 0 or int(venda["preco"]) <0]
 
+# Exibir a lista com os erros
+for erro in erros:
+    print(erro)
+    
 ### Exercício 2: Classificação de Dados de Sensor
 # Imagine que você está trabalhando com dados de sensores IoT. 
 # Os dados incluem medições de temperatura. Você precisa classificar cada leitura 
 # como 'Baixa', 'Normal' ou 'Alta'. Considerando que:
-temperatura = int(input("Informe o valor: "))
 
-if temperatura <= 15:
-    print("Temperatura Baixa")
-elif temperatura > 15 and temperatura <= 25:
-    print("Temperatura Normal")
-elif temperatura > 25:
-    print("Temperatura Alta ")
-else:
-    print("Temperatura incorreta!") 
+# Lista de temperaturas
+temperaturas = [10, 58, 22, 30, 15, 25, 5, 28, 20, 12]
+
+# Classificar cada temperatura na lista
+for temperatura in temperaturas:
+    if temperatura <= 15:
+        print(f"Temperatura {temperatura}: Baixa")
+    elif 15 < temperatura <= 25:
+        print(f"Temperatura {temperatura}: Normal")
+    elif temperatura > 25:
+        print(f"Temperatura {temperatura}: Alta")
+    else:
+        print(f"Temperatura {temperatura}: Incorreta!")
 
 ### Exercício 3: Filtragem de Logs por Severidade
 # Você está analisando logs de uma aplicação e precisa filtrar mensagens 
@@ -139,10 +150,7 @@ print("Lista normalizada:", lista_normalizada)
 
 ### Exercício 8. Filtragem de Dados Faltantes
 # Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
-def filtrar_dados_faltantes(lista_usuarios, campo):
-    """
-    Filtra os dicionários que não contêm o campo especificado.
-    """
+def filtrar_dados_faltantes(lista_usuarios, campo): #Filtra os dicionários que não contêm o campo especificado.
     return [usuario for usuario in lista_usuarios if campo not in usuario]
 
 # Exemplo de uso
@@ -164,6 +172,13 @@ print("Usuários sem idade:", usuarios_faltando_idade)
 
 ### Exercício 9. Extração de Subconjuntos de Dados
 # Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
+# Lista de temperaturas
+numbers = [10, 58, 22, 30, 15, 25, 5, 28, 20, 12]
+
+# Classificar cada temperatura na lista
+for number in numbers:
+    if number  % 2 == 0 :
+        print(f"Número {number}: é par !")
 
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
