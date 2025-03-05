@@ -22,7 +22,7 @@ if temperatura <= 15:
 elif temperatura > 15 and temperatura <= 25:
     print("Temperatura Normal")
 elif temperatura > 25:
-    print("Temperatura Alta")
+    print("Temperatura Alta ")
 else:
     print("Temperatura incorreta!") 
 
