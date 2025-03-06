@@ -223,15 +223,66 @@ while True:
     if entrada == "sair":
         break
 
-
 ### Exercício 12. Validação de Entrada
 # Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
+while True:
+    entrada = int(input("Digite número entre 1 - 5 para <sair>: "))
+    if entrada <= 5:
+        break
 
 ### Exercício 13. Consumo de API Simulado
 # Simular o consumo de uma API paginada, onde cada "página" de dados é processada em loop até que não haja mais páginas.
+def api_simulada(pagina):
+    """Simula uma API paginada com 5 páginas de dados"""
+    total_paginas = 5
+    if pagina > total_paginas:
+        return [], None
+    
+    # Gera dados fictícios (10 itens por página)
+    dados = [f"Item {i}" for i in range((pagina-1)*10 + 1, pagina*10 +1)]
+    
+    # Determina se há próxima página
+    proxima_pagina = pagina + 1 if pagina < total_paginas else None
+    
+    return dados, proxima_pagina
+
+# Consumo da API
+pagina_atual = 1
+while True:
+    dados, proxima_pagina = api_simulada(pagina_atual)
+    
+    # Simula o processamento dos dados
+    print(f"Processando página {pagina_atual}:")
+    for item in dados:
+        print(f"- {item}")
+    
+    # Verifica se deve continuar
+    if not proxima_pagina:
+        print("Todas as páginas foram processadas!")
+        break
+        
+    pagina_atual = proxima_pagina
 
 ### Exercício 14. Tentativas de Conexão
 # Simular tentativas de reconexão a um serviço com um limite máximo de tentativas.
+import time
+qtde_tentativas = 10
+tentativa = 1
+while qtde_tentativas >= tentativa:
+    print("Tentando a " + str(tentativa) + "ª conexão..." )
+    tentativa += 1
+    time.sleep(1)
 
 ### Exercício 15. Processamento de Dados com Condição de Parada
 # Processar itens de uma lista até encontrar um valor específico que indica a parada.
+lista_numeros = [1,2,3,4,5,6,7,8,9]
+indice = 0
+valor_parar = 7
+
+while indice < len(lista_numeros):
+    if indice == 7 - 1:
+        print(f"Valor de parada '{valor_parar}' encontrado!")
+        break
+    elemento = lista_numeros[indice]
+    print(f"Processando: {elemento}")
+    indice += 1
