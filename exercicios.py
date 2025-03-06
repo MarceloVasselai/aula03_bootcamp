@@ -280,7 +280,7 @@ indice = 0
 valor_parar = 7
 
 while indice < len(lista_numeros):
-    if indice == 7:
+    if indice == 7 - 1:
         print(f"Valor de parada '{valor_parar}' encontrado!")
         break
     elemento = lista_numeros[indice]
