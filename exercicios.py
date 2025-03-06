@@ -218,6 +218,11 @@ for categoria, total in resultado.items():
 
 ### Exercício 11. Leitura de Dados até Flag
 # Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
+while True:
+    entrada = input("Digite algo (ou 'sair' para terminar): ")
+    if entrada == "sair":
+        break
+
 
 ### Exercício 12. Validação de Entrada
 # Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
