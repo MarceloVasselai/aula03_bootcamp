@@ -3,28 +3,39 @@
 # que todos os registros tenham valores positivos para `quantidade` e `preço`. 
 # Escreva um programa que verifique esses campos e imprima "Dados válidos" se ambos 
 # forem positivos ou "Dados inválidos" caso contrário.
-qtde = int(input("Informe a qtde: "))
-valor = int(input("Informe o valor: "))
+vendas = [
+    {"quantidade": 10, "preco": 20.5},
+    {"quantidade": 5, "preco": 15.0},
+    {"quantidade": -1, "preco": 15.0},
+    {"quantidade": 5, "preco": -115.0},
+    {"quantidade": 5, "preco": 15.0},
+    {"quantidade": 3, "preco": 10.0}
+]
 
-if qtde > 0 and valor > 0:
-    print("Dados válidos")
-else:
-    print("Dados inválidos") 
+erros = [venda for venda in vendas if int(venda["quantidade"]) < 0 or int(venda["preco"]) <0]
 
+# Exibir a lista com os erros
+for erro in erros:
+    print(erro)
+    
 ### Exercício 2: Classificação de Dados de Sensor
 # Imagine que você está trabalhando com dados de sensores IoT. 
 # Os dados incluem medições de temperatura. Você precisa classificar cada leitura 
 # como 'Baixa', 'Normal' ou 'Alta'. Considerando que:
-temperatura = int(input("Informe o valor: "))
 
-if temperatura <= 15:
-    print("Temperatura Baixa")
-elif temperatura > 15 and temperatura <= 25:
-    print("Temperatura Normal")
-elif temperatura > 25:
-    print("Temperatura Alta ")
-else:
-    print("Temperatura incorreta!") 
+# Lista de temperaturas
+temperaturas = [10, 58, 22, 30, 15, 25, 5, 28, 20, 12]
+
+# Classificar cada temperatura na lista
+for temperatura in temperaturas:
+    if temperatura <= 15:
+        print(f"Temperatura {temperatura}: Baixa")
+    elif 15 < temperatura <= 25:
+        print(f"Temperatura {temperatura}: Normal")
+    elif temperatura > 25:
+        print(f"Temperatura {temperatura}: Alta")
+    else:
+        print(f"Temperatura {temperatura}: Incorreta!")
 
 ### Exercício 3: Filtragem de Logs por Severidade
 # Você está analisando logs de uma aplicação e precisa filtrar mensagens 
@@ -89,27 +100,129 @@ erros = [log for log in logs if int(log["valor"]) >= 10000 or (int(log["hora"]) 
 for erro in erros:
     print(erro)
 
-
-
 ### Exercício 6. Contagem de Palavras em Textos
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
+from collections import Counter
+import string
+
+def contar_palavras(texto):
+    # Normalizar o texto: converter para minúsculas e remover pontuações
+    texto = texto.lower()
+    texto = texto.translate(str.maketrans('', '', string.punctuation))
+
+    # Dividir o texto em palavras
+    palavras = texto.split()
+
+    # Contar as ocorrências de cada palavra
+    contagem = Counter(palavras)
+
+    return contagem
+
+# Exemplo de uso
+texto = """
+Olá, mundo! Este um exercício de Python. A linguagem python é mais utilizada do Mundo, e como utilizamos Python neste mundo.
+"""
+
+contagem = contar_palavras(texto)
+
+# Exibir a contagem de cada palavra
+for palavra, quantidade in contagem.items():
+    print(f"'{palavra}': {quantidade} veze(s)")
 
 ### Exercício 7. Normalização de Dados
 # Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
+def normalizar_lista(lista):
+    # Encontrar o valor mínimo e máximo da lista
+    minimo = min(lista)
+    maximo = max(lista)
+
+    # Normalizar cada valor da lista
+    lista_normalizada = [(valor - minimo) / (maximo - minimo) for valor in lista]
+
+    return lista_normalizada
+
+# Exemplo de uso
+lista = [10, 20, 30, 40, 50, 60] #Lista normalizada: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+lista_normalizada = normalizar_lista(lista)
+
+print("Lista original:", lista)
+print("Lista normalizada:", lista_normalizada)
 
 ### Exercício 8. Filtragem de Dados Faltantes
 # Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
+def filtrar_dados_faltantes(lista_usuarios, campo): #Filtra os dicionários que não contêm o campo especificado.
+    return [usuario for usuario in lista_usuarios if campo not in usuario]
+
+# Exemplo de uso
+lista_usuarios = [
+    {"nome": "Mario", "idade": 25, "email": "mario@example.com"},
+    {"nome": "Jose", "idade": 30},  # Campo 'email' faltando
+    {"nome": "Alfredo", "email": "alfredo@example.com"},  # Campo 'idade' faltando
+    {"nome": "Marcos", "idade": 35, "email": "marcos@example.com"},
+    {"nome": "Maria"}  # Campos 'idade' e 'email' faltando
+]
+
+# Filtrar usuários que não têm o campo 'email'
+usuarios_faltando_email = filtrar_dados_faltantes(lista_usuarios, "email")
+print("Usuários sem email:", usuarios_faltando_email)
+
+# Filtrar usuários que não têm o campo 'idade'
+usuarios_faltando_idade = filtrar_dados_faltantes(lista_usuarios, "idade")
+print("Usuários sem idade:", usuarios_faltando_idade)
 
 ### Exercício 9. Extração de Subconjuntos de Dados
 # Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
+# Lista de temperaturas
+numbers = [10, 58, 22, 30, 15, 25, 5, 28, 20, 12]
+
+# Classificar cada temperatura na lista
+for number in numbers:
+    if number  % 2 == 0 :
+        print(f"Número {number} é par !")
 
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
+def total_vendas_por_categoria(vendas): 
+
+    total_por_categoria = {}
+
+    for venda in vendas:
+        categoria = venda['categoria']
+        valor = venda['valor']
+
+        # Adiciona o valor à categoria correspondente
+        if categoria in total_por_categoria:
+            total_por_categoria[categoria] += valor
+        else:
+            total_por_categoria[categoria] = valor
+
+    return total_por_categoria
+
+# Exemplo de uso
+vendas = [
+    {"categoria": "Eletrônicos", "valor": 1000.30},
+    {"categoria": "Roupas", "valor": 1500.00},
+    {"categoria": "Eletrônicos", "valor": 300.20},
+    {"categoria": "Alimentos", "valor": 50.10},
+    {"categoria": "Roupas", "valor": 1001.00},
+    {"categoria": "Alimentos", "valor": 75.00},
+]
+
+resultado = total_vendas_por_categoria(vendas)
+
+# Exibir o total de vendas por categoria
+for categoria, total in resultado.items():
+    print(f"Categoria: {categoria}, Total de Vendas: R$ {total:.2f}")
 
 ### Exercícios com WHILE
 
 ### Exercício 11. Leitura de Dados até Flag
 # Ler dados de entrada até que uma palavra-chave específica ("sair") seja fornecida.
+while True:
+    entrada = input("Digite algo (ou 'sair' para terminar): ")
+    if entrada == "sair":
+        break
+
 
 ### Exercício 12. Validação de Entrada
 # Solicitar ao usuário um número dentro de um intervalo específico até que a entrada seja válida.
